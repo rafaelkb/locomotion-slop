@@ -11,6 +11,7 @@ import com.trainguy9512.locomotion.render.ItemRenderType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
@@ -114,14 +115,17 @@ public class FirstPersonGenericItems {
     );
 
     public static final List<TagKey<Item>> BLOCK_ITEM_TAG_OVERRIDES = List.of(
-            ItemTags.SHULKER_BOXES,
             ItemTags.SKULLS,
             ItemTags.BEDS
     );
 
     private static boolean isBlockItem(ItemStack itemStack) {
-        if (!(itemStack.getItem() instanceof BlockItem)) {
+        if (!(itemStack.getItem() instanceof BlockItem blockItem)) {
             return false;
+        }
+        // 1.21.1 only has the shulker box tag as a block tag, so the held item's block is checked against it.
+        if (blockItem.getBlock().defaultBlockState().is(BlockTags.SHULKER_BOXES)) {
+            return true;
         }
         for (Item item : BLOCK_ITEM_OVERRIDES) {
             if (itemStack.is(item)) {

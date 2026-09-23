@@ -32,33 +32,33 @@ public class FirstPersonAttackAnimations {
         return identifier;
     }
 
-    public static final ResourceLocation DEFAULT = register(LocomotionMain.makeResourceLocation("default"), AttackAnimationRule.builder(
+    public static final ResourceLocation DEFAULT = register(LocomotionMain.makeIdentifier("default"), AttackAnimationRule.builder(
             FirstPersonMontages.HAND_TOOL_ATTACK_PICKAXE_MONTAGE,
             context -> true,
             0)
             .build());
-    public static final ResourceLocation EMPTY_HAND_PUNCH = register(LocomotionMain.makeResourceLocation("empty_hand_punch"), AttackAnimationRule.builder(
+    public static final ResourceLocation EMPTY_HAND_PUNCH = register(LocomotionMain.makeIdentifier("empty_hand_punch"), AttackAnimationRule.builder(
             FirstPersonMontages.HAND_EMPTY_ATTACK_MONTAGE,
             context -> context.item().isEmpty(),
             20)
             .build());
-    public static final ResourceLocation TRIDENT = register(LocomotionMain.makeResourceLocation("trident_jab"), AttackAnimationRule.builder(
+    public static final ResourceLocation TRIDENT = register(LocomotionMain.makeIdentifier("trident_jab"), AttackAnimationRule.builder(
             FirstPersonMontages.HAND_TRIDENT_JAB_MONTAGE,
             context -> context.item().getUseAnimation() == LocomotionMultiVersionWrappers.getTridentUseAnimation(),
             30)
             .build());
-    public static final ResourceLocation AXE_ACROSS = register(LocomotionMain.makeResourceLocation("axe_across"), AttackAnimationRule.builder(
+    public static final ResourceLocation AXE_ACROSS = register(LocomotionMain.makeIdentifier("axe_across"), AttackAnimationRule.builder(
             FirstPersonMontages.HAND_TOOL_ATTACK_AXE_MONTAGE,
             context -> context.item().is(ItemTags.AXES),
             30)
             .setDoesAnimationOffsetOffHand(true)
             .build());
-    public static final ResourceLocation MACE_SLAM = register(LocomotionMain.makeResourceLocation("mace_slam"), AttackAnimationRule.builder(
+    public static final ResourceLocation MACE_SLAM = register(LocomotionMain.makeIdentifier("mace_slam"), AttackAnimationRule.builder(
             FirstPersonMontages.HAND_MACE_ATTACK_MONTAGE,
             context -> context.item().is(ItemTags.MACE_ENCHANTABLE),
             30)
             .build());
-    public static final ResourceLocation SWORD_MAIN = register(LocomotionMain.makeResourceLocation("sword_main"), AttackAnimationRule.builder(
+    public static final ResourceLocation SWORD_MAIN = register(LocomotionMain.makeIdentifier("sword_main"), AttackAnimationRule.builder(
             MontageConfiguration.builder("hand_tool_sword_attack", FirstPersonAnimationSequences.HAND_TOOL_SWORD_ATTACK)
                     .playsInSlot(FirstPersonMontages.MAIN_HAND_ATTACK_SLOT)
                     .setCooldownDuration(TimeSpan.of60FramesPerSecond(3))
@@ -69,7 +69,7 @@ public class FirstPersonAttackAnimations {
             60)
             .setDoesAnimationOffsetOffHand(true)
             .build());
-//    public static final ResourceLocation SWORD_SPRINT = register(LocomotionMain.makeResourceLocation("sword_sprint"), AttackAnimationRule.builder(
+//    public static final ResourceLocation SWORD_SPRINT = register(LocomotionMain.makeIdentifier("sword_sprint"), AttackAnimationRule.builder(
 //                    MontageConfiguration.builder("hand_tool_sword_attack_sprint", FirstPersonAnimationSequences.HAND_TOOL_SWORD_ATTACK_SPRINT)
 //                            .playsInSlot(FirstPersonMontages.MAIN_HAND_ATTACK_SLOT)
 //                            .setCooldownDuration(TimeSpan.of60FramesPerSecond(3))
@@ -80,7 +80,7 @@ public class FirstPersonAttackAnimations {
 //                    70)
 //            .setDoesAnimationOffsetOffHand(true)
 //            .build());
-    public static final ResourceLocation SWORD_CRITICAL = register(LocomotionMain.makeResourceLocation("sword_critical"), AttackAnimationRule.builder(
+    public static final ResourceLocation SWORD_CRITICAL = register(LocomotionMain.makeIdentifier("sword_critical"), AttackAnimationRule.builder(
                     MontageConfiguration.builder("hand_tool_sword_attack_critical", FirstPersonAnimationSequences.HAND_TOOL_SWORD_ATTACK_CRITICAL)
                             .playsInSlot(FirstPersonMontages.MAIN_HAND_ATTACK_SLOT)
                             .setCooldownDuration(TimeSpan.of60FramesPerSecond(3))

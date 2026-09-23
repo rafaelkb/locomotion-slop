@@ -17,7 +17,8 @@ public class GsonConfiguration {
 
     private static Gson createInternal() {
         return new GsonBuilder()
-                .setStrictness(Strictness.STRICT)
+                // 1.21.1 ships Gson 2.10.1, which has no Strictness enum. Non-lenient is that version's strict mode.
+                .setLenient(false)
                 .setPrettyPrinting()
                 .registerTypeAdapter(Vector3f.class, vector3fDeserializer())
                 .registerTypeAdapter(Quaternionf.class, quaternionDeserializer())

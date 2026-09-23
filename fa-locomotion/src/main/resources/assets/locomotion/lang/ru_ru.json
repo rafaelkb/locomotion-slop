@@ -33,7 +33,7 @@
   "locomotion.config.option.first_person_arm_camera_stiffness_factor.description": "Определяет, насколько быстро руки поворачиваются вслед за поворотом камеры.",
   
   "locomotion.config.option.first_person_mining_speed.name": "Множитель скорости анимации копания",
-  "locomotion.config.option.first_person_mining_speed.description": "Регулирует скорость воспроизведения анимаций копания. 1 - нормальная скорость, 0.5 - в два раза медленнее, 2 - в два раза быстрее."
+  "locomotion.config.option.first_person_mining_speed.description": "Регулирует скорость воспроизведения анимаций копания. 1 - нормальная скорость, 0.5 - в два раза медленнее, 2 - в два раза быстрее.",
 
    "locomotion.config.group.first_person_map.name": "Отображение карты",
   "locomotion.config.group.first_person_map.description": "Настройки отображения и анимации карты от первого лица.",
