@@ -109,13 +109,13 @@ public class MixinMultiPlayerGameMode {
             method = "useItemOn",
             at = @At("RETURN")
     )
-    public void triggerUseItemOnAnimation(LocalPlayer player, InteractionHand hand, BlockHitResult result, CallbackInfoReturnable<InteractionResult> cir) {
-        InteractionResult result = cir.getReturnValue();
-        if (result.consumesAction()) {
+    public void triggerUseItemOnAnimation(LocalPlayer player, InteractionHand hand, BlockHitResult blockHitResult, CallbackInfoReturnable<InteractionResult> cir) {
+        InteractionResult interactionResult = cir.getReturnValue();
+        if (interactionResult.consumesAction()) {
             FirstPersonUseAnimations.triggerUseAnimation(
                     hand,
                     FirstPersonUseAnimations.UseAnimationType.USE_ITEM_ON_BLOCK,
-                    result.shouldSwing()
+                    interactionResult.shouldSwing()
             );
         }
     }

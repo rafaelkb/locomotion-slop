@@ -19,7 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.ShieldItem;
 
 import java.util.*;
@@ -38,7 +38,7 @@ public class FirstPersonHandPoses {
         return identifier;
     }
 
-    public static final ResourceLocation EMPTY_MAIN_HAND = register(LocomotionMain.makeResourceLocation("empty_main_hand"), HandPoseDefinition.builder(
+    public static final ResourceLocation EMPTY_MAIN_HAND = register(LocomotionMain.makeIdentifier("empty_main_hand"), HandPoseDefinition.builder(
             "empty_main_hand",
             HandPoseFunctionSupplier::constructOnlyWithMiningAnimation,
             FirstPersonAnimationSequences.HAND_EMPTY_POSE,
@@ -50,7 +50,7 @@ public class FirstPersonHandPoses {
             .setMiningPoseFunctionSuppler(FirstPersonMining::constructEmptyHandMiningPoseFunction)
             .build());
 
-    public static final ResourceLocation EMPTY_OFF_HAND = register(LocomotionMain.makeResourceLocation("empty_off_hand"), HandPoseDefinition.builder(
+    public static final ResourceLocation EMPTY_OFF_HAND = register(LocomotionMain.makeIdentifier("empty_off_hand"), HandPoseDefinition.builder(
             "empty_off_hand",
             HandPoseFunctionSupplier::constructOnlyWithMiningAnimation,
             FirstPersonAnimationSequences.HAND_EMPTY_LOWERED,
@@ -60,7 +60,7 @@ public class FirstPersonHandPoses {
             .setLowerSequence(FirstPersonAnimationSequences.HAND_EMPTY_LOWERED)
             .setHandsToUsePoseIn(InteractionHand.OFF_HAND)
             .build());
-    public static final ResourceLocation GENERIC_ITEM = register(LocomotionMain.makeResourceLocation("generic_item"), HandPoseDefinition.builder(
+    public static final ResourceLocation GENERIC_ITEM = register(LocomotionMain.makeIdentifier("generic_item"), HandPoseDefinition.builder(
             "generic_item",
             FirstPersonGenericItems::constructPoseFunction,
             FirstPersonGenericItems::getCurrentBasePose,
@@ -68,7 +68,7 @@ public class FirstPersonHandPoses {
             0)
             .setMiningPoseFunctionSuppler(FirstPersonMining::constructEmptyHandMiningPoseFunction)
             .build());
-    public static final ResourceLocation PICKAXE = register(LocomotionMain.makeResourceLocation("pickaxe"), HandPoseDefinition.builder(
+    public static final ResourceLocation PICKAXE = register(LocomotionMain.makeIdentifier("pickaxe"), HandPoseDefinition.builder(
             "pickaxe",
             HandPoseFunctionSupplier::constructOnlyWithMiningAnimation,
             FirstPersonAnimationSequences.HAND_TOOL_POSE,
@@ -77,7 +77,7 @@ public class FirstPersonHandPoses {
             .setRaiseSequence(FirstPersonAnimationSequences.HAND_TOOL_RAISE)
             .setLowerSequence(FirstPersonAnimationSequences.HAND_TOOL_LOWER)
             .build());
-    public static final ResourceLocation AXE = register(LocomotionMain.makeResourceLocation("axe"), HandPoseDefinition.builder(
+    public static final ResourceLocation AXE = register(LocomotionMain.makeIdentifier("axe"), HandPoseDefinition.builder(
             "axe",
             HandPoseFunctionSupplier::constructOnlyWithMiningAnimation,
             FirstPersonAnimationSequences.HAND_TOOL_POSE,
@@ -87,7 +87,7 @@ public class FirstPersonHandPoses {
             .setLowerSequence(FirstPersonAnimationSequences.HAND_TOOL_LOWER)
             .setMiningPoseFunctionSuppler(FirstPersonMining::constructAxeMiningPoseFunction)
             .build());
-    public static final ResourceLocation SHOVEL = register(LocomotionMain.makeResourceLocation("shovel"), HandPoseDefinition.builder(
+    public static final ResourceLocation SHOVEL = register(LocomotionMain.makeIdentifier("shovel"), HandPoseDefinition.builder(
             "shovel",
             HandPoseFunctionSupplier::constructOnlyWithMiningAnimation,
             FirstPersonAnimationSequences.HAND_TOOL_POSE,
@@ -97,7 +97,7 @@ public class FirstPersonHandPoses {
             .setLowerSequence(FirstPersonAnimationSequences.HAND_TOOL_LOWER)
             .setMiningPoseFunctionSuppler(FirstPersonMining::constructShovelMiningPoseFunction)
             .build());
-    public static final ResourceLocation HOE = register(LocomotionMain.makeResourceLocation("hoe"), HandPoseDefinition.builder(
+    public static final ResourceLocation HOE = register(LocomotionMain.makeIdentifier("hoe"), HandPoseDefinition.builder(
             "hoe",
             HandPoseFunctionSupplier::constructOnlyWithMiningAnimation,
             FirstPersonAnimationSequences.HAND_TOOL_POSE,
@@ -106,7 +106,7 @@ public class FirstPersonHandPoses {
             .setRaiseSequence(FirstPersonAnimationSequences.HAND_TOOL_RAISE)
             .setLowerSequence(FirstPersonAnimationSequences.HAND_TOOL_LOWER)
             .build());
-    public static final ResourceLocation SWORD = register(LocomotionMain.makeResourceLocation("sword"), HandPoseDefinition.builder(
+    public static final ResourceLocation SWORD = register(LocomotionMain.makeIdentifier("sword"), HandPoseDefinition.builder(
             "sword",
             FirstPersonSword::handSwordPoseFunction,
             FirstPersonAnimationSequences.HAND_TOOL_POSE,
@@ -115,7 +115,7 @@ public class FirstPersonHandPoses {
             .setRaiseSequence(FirstPersonAnimationSequences.HAND_TOOL_SWORD_RAISE)
             .setLowerSequence(FirstPersonAnimationSequences.HAND_TOOL_LOWER)
             .build());
-    public static final ResourceLocation SHIELD = register(LocomotionMain.makeResourceLocation("shield"), HandPoseDefinition.builder(
+    public static final ResourceLocation SHIELD = register(LocomotionMain.makeIdentifier("shield"), HandPoseDefinition.builder(
             "shield",
             FirstPersonShield::constructShieldPoseFunction,
             FirstPersonAnimationSequences.HAND_SHIELD_POSE,
@@ -125,25 +125,25 @@ public class FirstPersonHandPoses {
             .setLowerSequence(FirstPersonAnimationSequences.HAND_TOOL_LOWER)
             .setMiningPoseFunctionSuppler(() -> FirstPersonMining.constructPickaxeMiningPoseFunction(SequenceEvaluatorFunction.builder(FirstPersonAnimationSequences.HAND_SHIELD_POSE).build()))
             .build());
-    public static final ResourceLocation BOW = register(LocomotionMain.makeResourceLocation("bow"), HandPoseDefinition.builder(
+    public static final ResourceLocation BOW = register(LocomotionMain.makeIdentifier("bow"), HandPoseDefinition.builder(
             "bow",
             HandPoseFunctionSupplier::constructOnlyWithMiningAnimation,
             FirstPersonAnimationSequences.HAND_BOW_POSE,
-            itemStack -> itemStack.getUseAnimation() == ItemUseAnimation.BOW,
+            itemStack -> itemStack.getUseAnimation() == UseAnim.BOW,
             100)
             .setRaiseSequence(FirstPersonAnimationSequences.HAND_TOOL_RAISE)
             .setLowerSequence(FirstPersonAnimationSequences.HAND_TOOL_LOWER)
             .build());
-    public static final ResourceLocation CROSSBOW = register(LocomotionMain.makeResourceLocation("crossbow"), HandPoseDefinition.builder(
+    public static final ResourceLocation CROSSBOW = register(LocomotionMain.makeIdentifier("crossbow"), HandPoseDefinition.builder(
             "crossbow",
             HandPoseFunctionSupplier::constructOnlyWithMiningAnimation,
             FirstPersonAnimationSequences.HAND_CROSSBOW_POSE,
-            itemStack -> itemStack.getUseAnimation() == ItemUseAnimation.CROSSBOW,
+            itemStack -> itemStack.getUseAnimation() == UseAnim.CROSSBOW,
             100)
             .setRaiseSequence(FirstPersonAnimationSequences.HAND_CROSSBOW_RAISE)
             .setLowerSequence(FirstPersonAnimationSequences.HAND_TOOL_LOWER)
             .build());
-    public static final ResourceLocation TRIDENT = register(LocomotionMain.makeResourceLocation("trident"), HandPoseDefinition.builder(
+    public static final ResourceLocation TRIDENT = register(LocomotionMain.makeIdentifier("trident"), HandPoseDefinition.builder(
             "trident",
             FirstPersonTrident::handTridentPoseFunction,
             FirstPersonAnimationSequences.HAND_TRIDENT_POSE,
@@ -152,16 +152,16 @@ public class FirstPersonHandPoses {
             .setRaiseSequence(FirstPersonAnimationSequences.HAND_SPEAR_RAISE)
             .setLowerSequence(FirstPersonAnimationSequences.HAND_SPEAR_LOWER)
             .build());
-    public static final ResourceLocation BRUSH = register(LocomotionMain.makeResourceLocation("brush"), HandPoseDefinition.builder(
+    public static final ResourceLocation BRUSH = register(LocomotionMain.makeIdentifier("brush"), HandPoseDefinition.builder(
             "brush",
             FirstPersonBrush::constructBrushPoseFunction,
             FirstPersonAnimationSequences.HAND_BRUSH_POSE,
-            itemStack -> itemStack.getUseAnimation() == ItemUseAnimation.BRUSH,
+            itemStack -> itemStack.getUseAnimation() == UseAnim.BRUSH,
             100)
             .setRaiseSequence(FirstPersonAnimationSequences.HAND_TOOL_RAISE)
             .setLowerSequence(FirstPersonAnimationSequences.HAND_TOOL_LOWER)
             .build());
-    public static final ResourceLocation MACE = register(LocomotionMain.makeResourceLocation("mace"), HandPoseDefinition.builder(
+    public static final ResourceLocation MACE = register(LocomotionMain.makeIdentifier("mace"), HandPoseDefinition.builder(
             "mace",
             FirstPersonMace::handMacePoseFunction,
             FirstPersonAnimationSequences.HAND_MACE_POSE,
@@ -170,16 +170,16 @@ public class FirstPersonHandPoses {
             .setRaiseSequence(FirstPersonAnimationSequences.HAND_TOOL_RAISE)
             .setLowerSequence(FirstPersonAnimationSequences.HAND_TOOL_LOWER)
             .build());
-    public static final ResourceLocation SPYGLASS = register(LocomotionMain.makeResourceLocation("spyglass"), HandPoseDefinition.builder(
+    public static final ResourceLocation SPYGLASS = register(LocomotionMain.makeIdentifier("spyglass"), HandPoseDefinition.builder(
             "spyglass",
             FirstPersonSpyglass::handSpyglassPoseFunction,
             FirstPersonAnimationSequences.HAND_SPYGLASS_POSE,
-            itemStack -> itemStack.getUseAnimation() == ItemUseAnimation.SPYGLASS,
+            itemStack -> itemStack.getUseAnimation() == UseAnim.SPYGLASS,
             100)
             .setRaiseSequence(FirstPersonAnimationSequences.HAND_TOOL_RAISE)
             .setLowerSequence(FirstPersonAnimationSequences.HAND_TOOL_LOWER)
             .build());
-    public static final ResourceLocation MAP = register(LocomotionMain.makeResourceLocation("map"), HandPoseDefinition.builder(
+    public static final ResourceLocation MAP = register(LocomotionMain.makeIdentifier("map"), HandPoseDefinition.builder(
             "map",
             HandPoseFunctionSupplier::constructOnlyWithMiningAnimation,
             FirstPersonAnimationSequences.HAND_MAP_SINGLE_HAND_POSE,

@@ -12,14 +12,14 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -27,9 +27,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(FishingHookRenderer.class)
 public abstract class MixinFishingHookRenderer {
 
-    @Shadow
-    public static HumanoidArm getHoldingArm(Player player) {
-        return null;
+    /**
+     * 1.21.1's FishingHookRenderer has no getHoldingArm helper; it picks the rod side inline by testing
+     * whether the main hand item performs ToolActions.FISHING_ROD_CAST. Vanilla fishing rods are the only
+     * items that do, so the main hand arm is used unless the main hand does not hold a fishing rod.
+     */
+    @Unique
+    private static HumanoidArm locomotion$getFishingRodArm(Player player) {
+        return player.getMainHandItem().getItem() instanceof FishingRodItem
+                ? player.getMainArm()
+                : player.getMainArm().getOpposite();
     }
 
     @Inject(
@@ -65,7 +72,7 @@ public abstract class MixinFishingHookRenderer {
 //                    Vector3f cameraNearPlaneCenter = entityRenderDispatcher.camera.getNearPlane().getPointOnPlane(0f, 0f).toVector3f();
 //                    Matrix4f cameraNearPlaneScaleMatrix = new Matrix4f().scale(fovScale).translate(cameraNearPlaneCenter);
 
-                    HumanoidArm fishingRodArm = getHoldingArm(player);
+                    HumanoidArm fishingRodArm = locomotion$getFishingRodArm(player);
                     String itemJoint = fishingRodArm == HumanoidArm.LEFT ? FirstPersonJointAnimator.LEFT_ITEM_JOINT : FirstPersonJointAnimator.RIGHT_ITEM_JOINT;
                     Matrix4f itemTransform = new Matrix4f()
                             .scale(1f/16f)
@@ -74,8 +81,9 @@ public abstract class MixinFishingHookRenderer {
                             .mul(animationPose.getJointChannel(itemJoint).getTransform())
                             .translate(0, 10, 5);
 
-                    float playerRotationX = player.getXRot(partialTick) * Mth.DEG_TO_RAD;
-                    float playerRotationY = player.getYRot(partialTick) * -Mth.DEG_TO_RAD;
+                    // 1.21.1 names the partial-tick interpolated view angles getViewXRot/getViewYRot.
+                    float playerRotationX = player.getViewXRot(partialTick) * Mth.DEG_TO_RAD;
+                    float playerRotationY = player.getViewYRot(partialTick) * -Mth.DEG_TO_RAD;
                     Quaternionf playerRotation = new Quaternionf().rotateY(playerRotationY).rotateX(playerRotationX);
                     Matrix4f playerTransform = new Matrix4f()
                             .translate(entityRenderDispatcher.camera.getPosition().toVector3f())

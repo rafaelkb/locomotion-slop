@@ -16,7 +16,7 @@ import com.trainguy9512.locomotion.animation.util.Transition;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.UseAnim;
 
 import java.util.Set;
 
@@ -134,6 +134,6 @@ public class FirstPersonDrinking {
         if (!context.getDriverValue(FirstPersonDrivers.getUsingItemDriver(hand))) {
             return false;
         }
-        return context.getDriverValue(FirstPersonDrivers.getRenderedItemDriver(hand)).getUseAnimation() == ItemUseAnimation.DRINK;
+        return context.getDriverValue(FirstPersonDrivers.getRenderedItemDriver(hand)).getUseAnimation() == UseAnim.DRINK;
     }
 }

@@ -11,7 +11,8 @@
     "render.MixinFishingHookRenderer",
     "render.MixinGameRenderer",
     "render.MixinItemInHandRenderer",
-    "render.MixinModelPart"
+    "render.MixinModelPart",
+    "render.ModelPartAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

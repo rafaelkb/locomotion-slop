@@ -2,6 +2,7 @@ package com.trainguy9512.locomotion.animation.pose;
 
 import com.trainguy9512.locomotion.access.MatrixModelPart;
 import com.trainguy9512.locomotion.animation.joint.skeleton.JointSkeleton;
+import com.trainguy9512.locomotion.mixin.render.ModelPartAccessor;
 import net.minecraft.client.model.geom.ModelPart;
 
 public class ModelPartSpacePose extends Pose {
@@ -36,7 +37,7 @@ public class ModelPartSpacePose extends Pose {
         if (part.hasChild(name)) {
             return part.getChild(name);
         }
-        for (ModelPart child : part.children.values()) {
+        for (ModelPart child : ((ModelPartAccessor) (Object) part).locomotion$getChildren().values()) {
             ModelPart found = findPart(child, name);
             if (found != null) {
                 return found;

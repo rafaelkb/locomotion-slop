@@ -153,7 +153,11 @@ public class JointAnimatorDispatcher {
     private static boolean positionIsWithinCameraRadius(BlockPos blockPos) {
         BlockPos cameraBlockPos = Objects.requireNonNull(Minecraft.getInstance().getCameraEntity()).blockPosition();
         int radius = LocomotionMain.CONFIG.data().blockEntities.evaluationDistance;
-        return cameraBlockPos.distChessboard(blockPos) < radius;
+        // 1.21.1 has no chessboard distance helper, so the Chebyshev distance is built from the axis deltas.
+        int xDistance = Math.abs(cameraBlockPos.getX() - blockPos.getX());
+        int yDistance = Math.abs(cameraBlockPos.getY() - blockPos.getY());
+        int zDistance = Math.abs(cameraBlockPos.getZ() - blockPos.getZ());
+        return Math.max(xDistance, Math.max(yDistance, zDistance)) < radius;
     }
 
     private static boolean blockEntityIsEnabledInConfig(BlockEntityType<?> type) {
