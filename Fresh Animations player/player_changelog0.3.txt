@@ -1,0 +1,38 @@
+
+Requires Entity Model Features and Entity Texture Features
+
+Changes:
+- added eating/drinking animation
+- added item equip and hotbar slot switch animations
+- added flying animations
+- added left/right jump, mostly replacing the existing jump animation
+- added swim up animation
+- added movement pitch when swimming
+- added strafing animations
+- added sleeping animation
+- added simple first person jump, fall, land, swim animations
+- added primitive turning animations
+- added cape animations when underwater, climbing or prone
+- added improved head yaw and pitch rotations
+- added player_face.jpm attachment for future pack compatability
+- improved jump, fall, land animations
+- improved walk, run, sprint animations
+- improved crawl, climb animations
+- improved sneaking animations
+- improved gliding animations
+- improved tilting/leaning
+- improved cape animations
+- improved elytra animations slightly
+- improved elytra exit transition
+- improved equip and actions transitions
+- cleaned up many animations
+- rearranged code for readability
+	- sorted animations into category-based jpm files, used by multiple player models
+
+Fixes:
+- fixed pack.mcmeta for 1.21.9+
+- fixed armour for 1.21.9+
+- fixed armour scale to be vanilla accurate
+- fixed shield animations not working properly in 1.20.2 and below
+- removed foot pivots for compatibility with certain mods and resource packs
+- removed shield models for compatibility with certain resource packs

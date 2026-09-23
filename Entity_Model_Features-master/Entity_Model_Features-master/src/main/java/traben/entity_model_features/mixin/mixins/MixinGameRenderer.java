@@ -1,0 +1,42 @@
+package traben.entity_model_features.mixin.mixins;
+
+
+import net.minecraft.client.renderer.GameRenderer;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import traben.entity_model_features.EMF;
+import traben.entity_model_features.models.animation.state.EMFState;
+import traben.entity_model_features.utils.EMFLODHandler;
+
+/**
+ * This mixin is used to get the current FOV value from the game renderer.
+ * less impactful than collecting all the values required and calling the method itself
+ */
+@Mixin(GameRenderer.class)
+public class MixinGameRenderer {
+
+    //#if MC < 26.1
+    @Inject(method = "getFov",
+            at = @At(value = "RETURN"))
+    private void emf$captureFov(final CallbackInfoReturnable<
+                    //#if MC >= 12102
+                    Float
+                    //#else
+                    //$$ Double
+                    //#endif
+                    > cir) {
+        if (EMF.config().getConfig().animationLODDistance != 0) {
+            EMFLODHandler.lastFOV = (double) cir.getReturnValue();
+        }
+    }
+    //#endif
+
+    @Inject(method = "render",
+            at = @At(value = "HEAD"))
+    private void emf$injectCounter(final CallbackInfo ci) {
+        EMFState.incFrameCount();
+    }
+}

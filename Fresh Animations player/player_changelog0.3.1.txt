@@ -1,0 +1,8 @@
+
+Requires Entity Model Features and Entity Texture Features
+
+Changes/Fixes:
+- fixed head rotation when strafing in 1.20.1 to 1.21.1
+- fixed skin overlays not scaling in 1.20.1 to 1.21.1
+- fixed first person hand skin overlays partially detaching in 1.20.1 to 1.21.1
+- tweaked first person hand swimming and jumping animations
