@@ -1,5 +1,0 @@
-{
-  "locomotion_slop.config.title": "Locomotion Slop",
-  "locomotion_slop.emf.variable.first_person_active": "Locomotion Slop: first-person animations are currently driving the local player's arms",
-  "locomotion_slop.emf.variable.first_person_enabled": "Locomotion Slop: first-person animation renderer is enabled in the config"
-}
