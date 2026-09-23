@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="locomotion"
+version="${file.jarVersion}"
+displayName="Locomotion + Fresh Animations"
+description='''
+Private NeoForge 1.21.1 port. Locomotion draws first person. Fresh Animations draws third person.
+Do not distribute. Both original authors permitted this private modification.
+'''
+
+[[dependencies.locomotion]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.locomotion]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.21.2)"
+ordering="NONE"
+side="CLIENT"
+
+[[mixins]]
+config="locomotion.mixins.json"

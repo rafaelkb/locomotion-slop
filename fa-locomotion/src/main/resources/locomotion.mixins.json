@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.trainguy9512.locomotion.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [],
+  "client": [
+    "game.MixinMinecraft",
+    "game.MixinMultiPlayerGameMode",
+    "item.MixinItemTransform",
+    "render.MixinFishingHookRenderer",
+    "render.MixinGameRenderer",
+    "render.MixinItemInHandRenderer",
+    "render.MixinModelPart"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

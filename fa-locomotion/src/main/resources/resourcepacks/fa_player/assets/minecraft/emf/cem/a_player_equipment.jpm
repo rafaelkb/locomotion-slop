@@ -1,0 +1,77 @@
+{
+	"credit": "Created by FreshLX for Fresh Animations",
+	"id": "player_equipment",
+	"animations": [
+		{
+			"var.eqp_bodyrx": "( sin( sqrt(swing_progress)*pi )*0.1 )*(var.rswingingA+var.lswingingA)",
+			"var.eqp_bodyry": "( var.attC *0.3/2  +(-0.4 )*var.idle )*(var.rswingingA-var.lswingingA) +torad( 3*max(0,sin(var.requip*pi)) -3*min(0,sin(var.lequip*pi)) )",
+			"var.eqp_bodyrz": "0",
+			"var.eqp_bodytx": "( sin( sqrt(swing_progress)*pi   )*0.5   +( 0.2 )*var.idle )*(var.rswingingA-var.lswingingA)",
+			"var.eqp_bodyty": "0",
+			"var.eqp_bodytz": "0"
+		},{
+			"var.eqp_rarmrx": "(-pi/10*(1+var.sneak)*(1-pow(var.gfast,2)) )*(1-cos(var.requip*pi))/2*(1-var.scratch_nov2)  +torad( (    -90*cos(    swing_progress *pi ) *var.attA          +( head_pitch-0.7 )                 )* var.rswingingA +(-18*var.attC +10*var.idle )* var.lswingingA)",
+			"var.eqp_larmrx": "(-pi/10*(1+var.sneak)*(1-pow(var.gfast,2)) )*(1-cos(var.lequip*pi))/2*(1-var.scratch_nov2)  +torad( (    -90*cos(    swing_progress *pi ) *var.attA          +( head_pitch-0.7 )                 )* var.lswingingA +(-18*var.attC +10*var.idle )* var.rswingingA)",
+			"var.eqp_rarmry": "torad( -5*( (1 -pow(var.requip,3)) *var.requip ) +2*min(0,sin(var.lequip*pi)) )             +torad( ((-15+25*cos(    swing_progress *pi ))*var.attA -10*var.idle +var.hy/1.5*if(is_riding,0.5,1) )* var.rswinging  -(-10*var.attC -10*var.idle )* var.lswinging )",
+			"var.eqp_larmry": "torad(  5*( (1 -pow(var.lequip,3)) *var.lequip ) +2*max(0,sin(var.requip*pi)) )             +torad(-((-15+25*cos(    swing_progress *pi ))*var.attA -10*var.idle +var.hy/1.5*if(is_riding,0.5,1) )* var.lswinging  +(-10*var.attC -10*var.idle )* var.rswinging )",
+			"var.eqp_rarmrz": "torad( -5*( sin(var.requip*pi*1.5) +var.requip/2 ) +min(0,sin(var.lequip*pi)) )             +torad( (    -20*sin( (1-swing_progress)*pi ) *var.attA +5                                           )* var.rswinging  -(-5                        )* var.lswinging )",
+			"var.eqp_larmrz": "torad(  5*( sin(var.lequip*pi*1.5) +var.lequip/2 ) -max(0,sin(var.requip*pi)) )             +torad(-(    -20*sin( (1-swing_progress)*pi ) *var.attA +5                                           )* var.lswinging  +(-5                        )* var.rswinging )",
+			"var.eqp_rarmtx": "0",
+			"var.eqp_larmtx": "0",
+			"var.eqp_rarmty": "( (1 -pow(var.requip,3)) *var.requip )",
+			"var.eqp_larmty": "( (1 -pow(var.lequip,3)) *var.lequip )",
+			"var.eqp_rarmtz": "(-0.4 )*var.requip",
+			"var.eqp_larmtz": "(-0.4 )*var.lequip"
+		},{
+			"var.eqp_rfootrx": "torad( (-var.attC*3*0 +4*var.idle )*var.rswingingA +( sin( sqrt(swing_progress)*pi ) )*var.lswingingA )",
+			"var.eqp_lfootrx": "torad( (-var.attC*3*0 +4*var.idle )*var.lswingingA +( sin( sqrt(swing_progress)*pi ) )*var.rswingingA )",
+			"var.eqp_rfootry": "torad(-(             -25*var.idle )*var.lswingingA*0 )",
+			"var.eqp_lfootry": "torad( (             -25*var.idle )*var.rswingingA*0 )",
+			"var.eqp_rfootrz": "0",
+			"var.eqp_lfootrz": "0"
+		},
+		{
+			"var.eat_headrx": "torad( 10 +3*sin(var.Et) )*(var.Reating+var.Leating) -var.idl_headrx*sin(min(1,(var.Reating+var.Leating)*3)*pi/2)/2",
+			"var.eat_headry": "                                                     -var.idl_headry*sin(min(1,(var.Reating+var.Leating)*3)*pi/2)/2",
+			"var.eat_headrz": "torad(  4 +5*cos(var.Et/7 +sin(var.Et/6)/3) )*(var.Reating-var.Leating)",
+			"var.eat_bodyrx": "0",
+			"var.eat_bodyry": "0",
+			"var.eat_bodyrz": "torad( 2 )*(var.Reating-var.Leating)",
+			"var.eat_rarmrx": "torad(-40 +3*cos(var.Et) +head_pitch/3.5    )*sin(min(1,var.Reating*3)*pi/2)",
+			"var.eat_larmrx": "torad(-40 +3*cos(var.Et) +head_pitch/3.5    )*sin(min(1,var.Leating*3)*pi/2)",
+			"var.eat_rarmry": "torad(-30                +head_yaw  /3      )*sin(min(1,var.Reating*2)*pi/2)",
+			"var.eat_larmry": "torad( 30                +head_yaw  /3      )*sin(min(1,var.Leating*2)*pi/2)",
+			"var.eat_rarmrz": "torad(-15 +3*sin(var.Et/5 +sin(var.Et/3)/3) )*sin(min(1,var.Reating*2)*pi/2)",
+			"var.eat_larmrz": "torad( 15 -3*sin(var.Et/5 +sin(var.Et/3)/3) )*sin(min(1,var.Leating*2)*pi/2)",
+			"var.eat_rarmtx": "0",
+			"var.eat_larmtx": "0",
+			"var.eat_rarmty": "sin(var.Reating*pi/2)",
+			"var.eat_larmty": "sin(var.Leating*pi/2)",
+			"var.eat_rarmtz": "( head_yaw/30 )*sin(var.Reating*pi/2)",
+			"var.eat_larmtz": "(-head_yaw/30 )*sin(var.Leating*pi/2)"
+		},
+		{
+			"var.blk_bodyrx": "( -0.1 )*(0.5-0.5*cos(var.rblock*pi+var.lblock*pi))",
+			"var.blk_bodyry": "( pi/13 )*(0.5-0.5*cos(var.lblock*pi)) +( -pi/13 )*(0.5-0.5*cos(var.rblock*pi))",
+			"var.blk_bodyrz": "0",
+			"var.blk_bodytx": "0",
+			"var.blk_bodyty": "0",
+			"var.blk_bodytz": "0",
+			"var.blk_rarmrx": "( -0.9 -0.2*var.sneak +0.2*var.shieldfix -(sin(var.rblock*pi*1.5)+1)/2 +min(pi/2-pi/3*var.shieldfix,var.hp/70) )*(0.5-0.5*cos(var.rblock*pi))                     +(  0.2                  )*var.lblock",
+			"var.blk_larmrx": "( -0.9 -0.2*var.sneak +0.2*var.shieldfix -(sin(var.lblock*pi*1.5)+1)/2 +min(pi/2-pi/3*var.shieldfix,var.hp/70) )*(0.5-0.5*cos(var.lblock*pi))                     +(  0.2                  )*var.rblock",
+			"var.blk_rarmry": "( -1.1                 +var.hy/45*cos(var.hp/180*pi)                                       -min(var.hp/90/2,0) )*(0.5-0.5*cos(var.rblock*pi))*(1-var.shieldfix/2) +(  0.4 +torad(var.hy)/2 )*var.lblock",
+			"var.blk_larmry": "(  1.1                 +var.hy/45*cos(var.hp/180*pi)                                       +min(var.hp/90/2,0) )*(0.5-0.5*cos(var.lblock*pi))*(1-var.shieldfix/2) +( -0.4 +torad(var.hy)/2 )*var.rblock",
+			"var.blk_rarmrz": "(  0.2                                   -(sin(var.rblock*pi*1.5)+1)/2   -max(var.hp/90,0) -min(var.hp/90/2,0) )*(0.5-0.5*cos(var.rblock*pi))*(1-var.shieldfix/2) +(  0.1                  )*var.lblock",
+			"var.blk_larmrz": "( -0.2                                   +(sin(var.lblock*pi*1.5)+1)/2   +max(var.hp/90,0) +min(var.hp/90/2,0) )*(0.5-0.5*cos(var.lblock*pi))*(1-var.shieldfix/2) +( -0.1                  )*var.rblock",
+			"var.blk_rarmtx": "( 1 -torad(var.hy) )*var.rblock +( 0.3 )*var.lblock",
+			"var.blk_larmtx": "(-1 -torad(var.hy) )*var.lblock +(-0.3 )*var.rblock",
+			"var.blk_rarmty": "( 2.5*(1-var.shieldfix) -2.3*var.sneak +var.hp/60 )*var.rblock",
+			"var.blk_larmty": "( 2.5*(1-var.shieldfix) -2.3*var.sneak +var.hp/60 )*var.lblock",
+			"var.blk_rarmtz": "(-1 +0.3*var.shieldfix +1-cos(torad(var.hp)) )*var.rblock +( 1 )*var.lblock",
+			"var.blk_larmtz": "(-1 +0.3*var.shieldfix +1-cos(torad(var.hp)) )*var.lblock +( 1 )*var.rblock"
+		},{
+			"var.blk_rlegry": "(  pi/13 )*(0.5-0.5*cos(var.lblock*pi))",
+			"var.blk_llegry": "( -pi/13 )*(0.5-0.5*cos(var.rblock*pi))"
+		}
+	]
+}
