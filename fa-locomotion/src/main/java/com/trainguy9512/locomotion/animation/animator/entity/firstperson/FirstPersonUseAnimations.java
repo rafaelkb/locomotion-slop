@@ -15,16 +15,15 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.neoforged.neoforge.common.DataMapHooks;
 
 import java.util.*;
 import java.util.function.Function;
@@ -70,16 +69,17 @@ public class FirstPersonUseAnimations {
         if (!context.currentItem.is(ItemTags.AXES) || !context.isTargetingBlock()) {
             return false;
         }
-        if (WeatheringCopper.getPrevious(context.lastTargetedBlock()).isPresent()) {
+        Block targetedBlock = context.lastTargetedBlock().getBlock();
+        if (DataMapHooks.getPreviousOxidizedStage(targetedBlock) != null) {
             return true;
         }
-        if (HoneycombItem.WAX_OFF_BY_BLOCK.get().get(context.lastTargetedBlock().getBlock()) != null) {
+        if (DataMapHooks.getBlockUnwaxed(targetedBlock) != null) {
             return true;
         }
-        if (context.lastTargetedBlock().getBlock().asItem().getDefaultInstance().is(ItemTags.LOGS)) {
+        if (targetedBlock.asItem().getDefaultInstance().is(ItemTags.LOGS)) {
             return true;
         }
-        if (context.lastTargetedBlock().getBlock() == Blocks.BAMBOO_BLOCK) {
+        if (targetedBlock == Blocks.BAMBOO_BLOCK) {
             return true;
         }
         return false;
