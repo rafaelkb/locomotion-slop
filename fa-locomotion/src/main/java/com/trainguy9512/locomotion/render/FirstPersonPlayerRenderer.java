@@ -221,11 +221,15 @@ public class FirstPersonPlayerRenderer {
             case MAP -> this.renderMap(bufferSource, poseStack, itemStack, combinedLight);
             case THIRD_PERSON_ITEM, MIRRORED_THIRD_PERSON_ITEM, ON_SHELF -> {
                 ItemDisplayContext displayContext = renderType.getItemDisplayContext(side);
+                // The 1.21.11 pipeline derives the left-hand mirror from the display context
+                // (THIRD_PERSON_LEFT_HAND mirrors, FIXED does not). Match that here instead of
+                // keying off the physical arm, which double-mirrors ON_SHELF/FIXED offhand items.
+                boolean leftHand = displayContext == ItemDisplayContext.THIRD_PERSON_LEFT_HAND;
                 this.minecraft.getItemRenderer().renderStatic(
                         entity,
                         itemStack,
                         displayContext,
-                        side == HumanoidArm.LEFT,
+                        leftHand,
                         poseStack,
                         bufferSource,
                         entity.level(),
